@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ba7r - بحر الإنجازات والنشاطات</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #fff;
+            --dark-color: #000;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .toggle-btn {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .wheel-container {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 10px solid var(--primary-color);
+            position: relative;
+            margin: 50px auto;
+            background: conic-gradient(#e74c3c 0deg 90deg, #2ecc71 90deg 180deg, #f39c12 180deg 270deg, #9b59b6 270deg 360deg);
+        }
+
+        .wheel-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            background-color: var(--secondary-color);
+            border: none;
+            padding: 15px 25px;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .wheel-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        .motivational-text {
+            text-align: center;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Ba7r - بحر الإنجازات والنشاطات</h1>
+        <p>ابدأ يومك بحماس وأنجز المزيد!</p>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleTheme()">تبديل الوضع</button>
+
+    <div class="wheel-container">
+        <button class="wheel-btn" onclick="spinWheel()">🎉 Spin the Wheel</button>
+    </div>
+
+    <div class="motivational-text" id="motivational-text">
+        "كل يوم جديد هو فرصة لإعادة تشكيل نفسك."
+    </div>
+
+    <script>
+        let isDarkMode = false;
+
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            document.body.style.backgroundColor = isDarkMode ? '#000' : '#fff';
+            document.body.style.color = isDarkMode ? '#fff' : '#000';
+        }
+
+        function spinWheel() {
+            const wheel = document.querySelector('.wheel-container');
+            let randomDegree = Math.floor(Math.random() * 360);
+            wheel.style.transition = 'transform 4s ease-out';
+            wheel.style.transform = 'rotate(' + (randomDegree + 3600) + 'deg)';
+            setTimeout(() => {
+                alert('مبروك! لقد فزت بعضوية مجانية لمدة أسبوع!');
+            }, 4000);
+        }
+
+        const motivationalPhrases = [
+            "الخطوة الأولى هي دائمًا الأصعب، لكنك بدأت بالفعل!",
+            "كل إنجاز صغير يقربك أكثر من هدفك الكبير.",
+            "اليوم فرصة جديدة لتحقيق الأفضل!",
+            "استمر، فأنت أقرب مما تتخيل.",
+            "عش حياتك كما لو كنت تصنع قصة ملهمة.",
+            "الإرادة تصنع المستحيل.",
+            "خطوة صغيرة اليوم تعني نجاحًا كبيرًا غدًا.",
+        ];
+
+        function showRandomPhrase() {
+            const phrase = motivationalPhrases[Math.floor(Math.random() * motivationalPhrases.length)];
+            document.getElementById('motivational-text').innerText = phrase;
+        }
+
+        setInterval(showRandomPhrase, 5000);
+    </script>
+</body>
+</html>
